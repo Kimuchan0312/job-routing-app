@@ -20,7 +20,7 @@ const defaultValues = {
   password: "",
 };
 
-function OpenLogin({onSuccess}) {
+function OpenLogin({onSuccess = () => {} }) {
   let navigate = useNavigate();
   let location = useLocation();
   let auth = useAuth();

@@ -40,10 +40,10 @@ function AuthProvider({ children }) {
     callback();
   };
 
-  const signOut = async (callback) => {
-    dispatch({ type: LOGOUT });
-    callback();
-  };
+  const signOut = async (callback = () => {}) => {
+  dispatch({ type: LOGOUT });
+  callback();
+};
 
   return (
     <AuthContext.Provider

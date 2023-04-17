@@ -15,10 +15,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Header() {
   const auth = useAuth();
   const { user, signOut } = auth;
+  const navigate = useNavigate();
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -100,7 +103,7 @@ export default function Header() {
           {user ? (
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Typography sx={{ marginRight: 2 }}>{user.username}</Typography>
-              <Button color="inherit" onClick={signOut}>
+              <Button color="inherit" onClick={() => signOut(() => navigate("/"))}>
                 Sign Out
               </Button>
             </Box>
@@ -114,7 +117,7 @@ export default function Header() {
       <Dialog open={openLoginModal} onClose={closeLogin}>
         <DialogTitle>Login</DialogTitle>
         <DialogContent>
-          <OpenLogin />
+          <OpenLogin onSuccess={closeLogin}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={closeLogin}>Forgot Password?</Button>
