@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, Typography, CardContent, Button, Divider} from '@mui/material'
 import SkillChips from './SkillChips'
-import { useNavigate } from 'react-router'
 import OpenLogin from '../components/OpenLogin';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,7 +9,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 function JobCard({ job }) {
-  const navigate = useNavigate ();
 
   const [openLoginModal, setOpenLoginModal] = React.useState(false);
 
@@ -24,7 +22,7 @@ function JobCard({ job }) {
   };
 
   return (
-    <Card onClick={() => navigate(`/job/${job.id}`)}>
+    <Card sx={{ height: "550px" }}>
       <CardContent>
         <Typography variant="h6">{job.title}</Typography>
         <Divider sx={{ marginBottom: '0.5rem'}}/>
@@ -34,7 +32,7 @@ function JobCard({ job }) {
         <Dialog open={openLoginModal} onClose={closeLogin}>
         <DialogTitle>Login</DialogTitle>
         <DialogContent>
-          <OpenLogin />
+          <OpenLogin onSuccess={closeLogin}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={closeLogin}>Forgot Password?</Button>

@@ -20,7 +20,7 @@ const defaultValues = {
   password: "",
 };
 
-function OpenLogin() {
+function OpenLogin({onSuccess}) {
   let navigate = useNavigate();
   let location = useLocation();
   let auth = useAuth();
@@ -38,6 +38,7 @@ function OpenLogin() {
 
     auth.login(username, password, () => {
       navigate(from, { replace: true });
+      onSuccess();
     });
   };
 

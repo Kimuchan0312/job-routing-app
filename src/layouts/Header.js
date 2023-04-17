@@ -99,7 +99,7 @@ export default function Header() {
           </Search>
           {user ? (
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Typography sx={{ marginRight: 2 }}>{user}</Typography>
+              <Typography sx={{ marginRight: 2 }}>{user.username}</Typography>
               <Button color="inherit" onClick={signOut}>
                 Sign Out
               </Button>

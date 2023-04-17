@@ -40,6 +40,7 @@ function HomePage() {
   };
 
   return (
+
     <Container sx={{backgroundColor: theme.palette.primary.lighter}}>
       <Box sx={{ marginTop: 6 }}>
         <Header/>

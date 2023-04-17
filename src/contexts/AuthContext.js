@@ -32,15 +32,15 @@ const AuthContext = createContext({ ...initialState });
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const login = async (username, callback) => {
+  const login = async (username, password, callback = () => {}) => {
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: { user: { username } },
+      payload: { user: { username, password} },
     });
     callback();
   };
 
-  const logout = async (callback) => {
+  const signOut = async (callback) => {
     dispatch({ type: LOGOUT });
     callback();
   };
@@ -50,7 +50,7 @@ function AuthProvider({ children }) {
       value={{
         ...state,
         login,
-        logout,
+        signOut,
       }}
     >
       {children}
