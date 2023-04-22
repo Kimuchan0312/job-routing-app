@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "../components/JobCard";
-import apiService from "../app/apiService"
+import apiService from "../app/apiService";
 import { Container } from "@mui/system";
-import { Alert, Grid, Box, Typography, Pagination, useTheme } from "@mui/material";
+import {
+  Alert,
+  Grid,
+  Box,
+  Typography,
+  Pagination,
+  useTheme,
+} from "@mui/material";
 import LoadingScreen from "../components/LoadingScreen";
 import Header from "../layouts/Header";
-
+import OpenLogin from "../components/OpenLogin";
 
 function HomePage() {
-
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -23,7 +29,7 @@ function HomePage() {
         const limit = 9;
         const res = await apiService.get(`/jobs?_page=${page}&_limit=${limit}`);
         setJobs(res.data);
-        const totalCount = parseInt(res.headers["x-total-count"], 10)
+        const totalCount = parseInt(res.headers["x-total-count"], 10);
         setTotalPages(Math.ceil(totalCount / limit));
         setError("");
       } catch (error) {
@@ -40,10 +46,18 @@ function HomePage() {
   };
 
   return (
-
-    <Container sx={{backgroundColor: theme.palette.primary.lighter}}>
-      <Box sx={{ marginTop: 6 }}>
-        <Header/>
+    <Container
+      maxWidth="xl"
+      sx={{
+        backgroundColor: theme.palette.primary.lighter,
+        maxWidth: "100%",
+        height: "100%",
+        padding: 0,
+        margin: 0,
+      }}
+    >
+      <Box>
+        <Header />
         <Typography variant="h6" sx={{ margin: 2 }}>
           Latest Jobs
         </Typography>
@@ -57,7 +71,7 @@ function HomePage() {
               ) : (
                 jobs.map((job) => (
                   <Grid item xs={12} md={6} lg={4} key={job.id}>
-                    <JobCard job={job} />
+                    <JobCard key={job.id} job={job} jobId={job.id} onLoginRequired={OpenLogin}/>
                   </Grid>
                 ))
               )}
@@ -76,5 +90,5 @@ function HomePage() {
       </Box>
     </Container>
   );
-}  
+}
 export default HomePage;

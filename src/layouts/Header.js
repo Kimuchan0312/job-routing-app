@@ -88,7 +88,7 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, margin: 2 }}>
             Job Routing
           </Typography>
           <Search>
@@ -102,7 +102,7 @@ export default function Header() {
           </Search>
           {user ? (
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Typography sx={{ marginRight: 2 }}>{user.username}</Typography>
+              <Typography sx={{ margin: 3 }}>{user.username}</Typography>
               <Button color="inherit" onClick={() => signOut(() => navigate("/"))}>
                 Sign Out
               </Button>
@@ -114,7 +114,7 @@ export default function Header() {
           )}
         </Toolbar>
       </AppBar>
-      <Dialog open={openLoginModal} onClose={closeLogin}>
+      <Dialog open={openLoginModal} onClose={closeLogin} sx={{ maxWidth: '100%'}}>
         <DialogTitle>Login</DialogTitle>
         <DialogContent>
           <OpenLogin onSuccess={closeLogin}/>

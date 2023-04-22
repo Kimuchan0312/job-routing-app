@@ -20,7 +20,7 @@ const defaultValues = {
   password: "",
 };
 
-function OpenLogin({onSuccess = () => {} }) {
+function OpenLogin({jobId, onSuccess}) {
   let navigate = useNavigate();
   let location = useLocation();
   let auth = useAuth();
@@ -44,7 +44,7 @@ function OpenLogin({onSuccess = () => {} }) {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={3} sx={{ minWidth: "350px" }}>
+      <Stack spacing={3}>
         <Typography variant="h4" textAlign="center">
           Login
         </Typography>

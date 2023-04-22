@@ -1,18 +1,17 @@
 import ThemeProvider from "./contexts/ThemeProvider"
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from "./pages/HomePage";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./routes/index"; 
+import './App.css';
 
 
 function App() {
   return (
     <div>
       <ThemeProvider> 
-      <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        </Routes>
-      </Router>
+      <BrowserRouter>
+      <Router />
+        </BrowserRouter>
       </ThemeProvider> 
       </div>
   );
